@@ -1,0 +1,35 @@
+img {
+  width: 450px;
+}
+
+.new-entry-input input {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 22px;
+}
+
+.header a {
+  color: white;
+}
+
+.sign-in-icon {
+  font-size: 30px;
+  margin-left: 5px;
+}
+
+.new-entry-input label,
+.notes-div label {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.notes-div textarea {
+  font-size: 22px;
+  border-radius: 5px;
+  border-width: 2.5px;
+}
+
+.notes-div textarea,
+.new-entry-input input {
+  border-color: purple;
+}

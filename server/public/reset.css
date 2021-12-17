@@ -2,6 +2,23 @@
   box-sizing: border-box;
 }
 
+h1,
+h2 {
+  font-family: "Balsamiq Sans", cursive;
+}
+
+p,
+label,
+input {
+  font-family: "Fuzzy Bubbles", cursive;
+}
+
+a,
+button {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 body {
   margin: 0;
 }

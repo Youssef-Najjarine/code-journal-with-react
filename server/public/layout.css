@@ -1,0 +1,51 @@
+.row {
+  display: flex;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.column-full {
+  width: 100%;
+}
+
+.column-half {
+  width: 50%;
+}
+
+.header {
+  background-color: purple;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.new-entry-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-entry-input:nth-of-type(2) {
+  margin: 40px 0 0;
+}
+
+.notes-div {
+  margin-top: 10px;
+}
+
+.new-entry-save {
+  border-radius: 10px;
+  font-size: 20px;
+  text-decoration: none;
+  padding: 15px 21px;
+  background-color: purple;
+  color: white;
+  text-transform: uppercase;
+  border-color: purple;
+}
+
+.new-entry-save-div {
+  display: flex;
+  justify-content: flex-end;
+}

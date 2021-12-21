@@ -15,6 +15,10 @@
   width: 50%;
 }
 
+.column-third {
+  width: calc(100% / 3);
+}
+
 .header {
   background-color: purple;
   justify-content: space-evenly;
@@ -36,7 +40,6 @@
 
 .new-entry-save {
   border-radius: 10px;
-  font-size: 20px;
   text-decoration: none;
   padding: 15px 21px;
   background-color: purple;
@@ -48,4 +51,14 @@
 .new-entry-save-div {
   display: flex;
   justify-content: flex-end;
+}
+
+.edit-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.entries-notes {
+  margin-left: 20px;
 }

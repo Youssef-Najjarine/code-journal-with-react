@@ -1,11 +1,27 @@
-img {
-  width: 450px;
+.new-entry-img {
+  width: 90%;
+}
+
+.entry-img {
+  width: 100%;
+}
+
+li {
+  list-style-type: none;
+  margin: 20px 0;
+}
+
+.new-entry-input input,
+.new-entry-input label,
+.notes-div label,
+.notes-div textarea,
+.new-entry-save {
+  font-size: 22px;
 }
 
 .new-entry-input input {
   padding: 10px;
   border-radius: 5px;
-  font-size: 22px;
 }
 
 .header a {
@@ -14,17 +30,15 @@ img {
 
 .sign-in-icon {
   font-size: 30px;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .new-entry-input label,
 .notes-div label {
-  font-size: 20px;
   margin-bottom: 5px;
 }
 
 .notes-div textarea {
-  font-size: 22px;
   border-radius: 5px;
   border-width: 2.5px;
 }
@@ -32,4 +46,8 @@ img {
 .notes-div textarea,
 .new-entry-input input {
   border-color: purple;
+}
+
+.pencil-icon {
+  font-size: 50px;
 }

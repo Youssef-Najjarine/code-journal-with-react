@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './pages/home';
 import Header from './pages/header';
 import parseRoute from './lib/parse-route';
+import Entries from './pages/entries';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -37,8 +38,10 @@ export default class App extends React.Component {
   renderPage() {
     const { route } = this.state;
     // const { route, user, token } = this.state;
-    if (route.path === 'home') {
-      return <Home/>;
+    if (route.path === 'home' || route.path === '') {
+      return <Home token='token'/>;
+    } else if (route.path === 'entries') {
+      return <Entries token='token'/>;
     }
   }
 
@@ -47,7 +50,7 @@ export default class App extends React.Component {
       <>
       <Header/>
       <div className='container'>
-        <Home/>
+        { this.renderPage() }
       </div>
       </>
     );

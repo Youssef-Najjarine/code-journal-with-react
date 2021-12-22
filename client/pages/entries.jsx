@@ -34,7 +34,7 @@ export default class Entries extends React.Component {
           <p className=''>{entry.notes}</p>
         </div>
         <div className='column-third edit-icon'>
-          <a href={`#edit?entryId=${entry.entryId}`}><i className="fas fa-pencil-alt pencil-icon"></i></a>
+          <a href={`#editEntry?entryId=${entry.entryId}`}><i className="fas fa-pencil-alt pencil-icon"></i></a>
         </div>
       </li>;
     });

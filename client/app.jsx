@@ -3,6 +3,8 @@ import Home from './pages/home';
 import Header from './pages/header';
 import parseRoute from './lib/parse-route';
 import Entries from './pages/entries';
+import EditEntry from './pages/edit-entry';
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -37,18 +39,21 @@ export default class App extends React.Component {
 
   renderPage() {
     const { route } = this.state;
+    const entryId = route.params.get('entryId');
     // const { route, user, token } = this.state;
     if (route.path === 'home' || route.path === '') {
       return <Home token='token'/>;
     } else if (route.path === 'entries') {
       return <Entries token='token'/>;
+    } else if (route.path === 'editEntry') {
+      return <EditEntry token='token' entryId={entryId}/>;
     }
   }
 
   render() {
     return (
       <>
-      <Header/>
+        <Header logo='Blog Journal'/>
       <div className='container'>
         { this.renderPage() }
       </div>

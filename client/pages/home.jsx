@@ -93,7 +93,7 @@ export default class Home extends React.Component {
             value={this.state.notes}
           >
           </textarea>
-            <div className='new-entry-save-div'>
+            <div className='new-entry-save-button'>
             <button className='new-entry-save'>Save</button>
           </div>
         </div>

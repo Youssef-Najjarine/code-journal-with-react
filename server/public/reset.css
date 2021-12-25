@@ -10,12 +10,15 @@ h3 {
 
 p,
 label,
-input {
+input,
+a,
+button {
   font-family: "Fuzzy Bubbles", cursive;
 }
 
 a,
-button {
+button,
+.delete-entry {
   cursor: pointer;
   text-decoration: none;
 }

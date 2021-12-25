@@ -6,14 +6,19 @@ export default class EditEntry extends React.Component {
     this.state = {
       title: '',
       photoUrl: '',
-      notes: ''
+      notes: '',
+      entryId: 0,
+      deleteEntryModal: false,
+      token: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEntryDelete = this.handleEntryDelete.bind(this);
   }
 
   componentDidMount() {
     const { token, entryId } = this.props;
+    this.setState({ token: token });
     fetch(`/api/entries/${entryId}`, {
       method: 'GET',
       headers: {
@@ -23,7 +28,12 @@ export default class EditEntry extends React.Component {
       .then(response => response.json())
       .then(data => {
         const [entry] = data;
-        this.setState({ title: entry.title, photoUrl: entry.photoUrl, notes: entry.notes });
+        this.setState({
+          title: entry.title,
+          photoUrl: entry.photoUrl,
+          notes: entry.notes,
+          entryId: entry.entryId
+        });
       });
   }
 
@@ -41,7 +51,7 @@ export default class EditEntry extends React.Component {
     if (!title || !photoUrl || !notes) {
       throw new ClientError(400, 'Please enter a valid title, photo Url, and notes.');
     } else {
-      fetch(`/api/meals/${entryId}`, {
+      fetch(`/api/entries/${entryId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -55,6 +65,18 @@ export default class EditEntry extends React.Component {
           console.error('Error:', error);
         });
     }
+    window.location.hash = '#entries';
+  }
+
+  handleEntryDelete() {
+    const { entryId, token } = this.state;
+    fetch(`/api/entries/${entryId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token
+      }
+    });
     window.location.hash = '#entries';
   }
 
@@ -108,11 +130,21 @@ export default class EditEntry extends React.Component {
               value={this.state.notes}
             >
             </textarea>
+
             <div className='new-entry-save-div'>
-              <button className='new-entry-save'>Save</button>
+              <input onClick={() => this.setState({ deleteEntryModal: true })} className='delete-entry' type={'button'} value={'Delete Entry'}/>
+              <button className="new-entry-save">Save</button>
             </div>
           </div>
         </form>
+        <div className={this.state.deleteEntryModal ? 'black-box' : 'black-box hidden'}>
+          <div className="white-box">
+            <h2>Are you sure you want to delete this entry?</h2>
+            <div className='row cancel-confirm-div'>
+              <button onClick={() => this.setState({ deleteEntryModal: false })} className='cancel-delete'>cancel</button>
+              <button onClick={this.handleEntryDelete} className='confirm-delete'>confirm</button></div>
+          </div>
+        </div>
       </main>
     );
   }

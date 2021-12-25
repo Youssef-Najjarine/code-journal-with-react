@@ -38,19 +38,14 @@
   margin-top: 10px;
 }
 
-.new-entry-save {
-  border-radius: 10px;
-  text-decoration: none;
-  padding: 15px 21px;
-  background-color: purple;
-  color: white;
-  text-transform: uppercase;
-  border-color: purple;
-}
-
 .new-entry-save-div {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+}
+
+.new-entry-save-button {
+  display: flex;
+  justify-content: end;
 }
 
 .edit-icon {
@@ -61,4 +56,31 @@
 
 .entries-notes {
   margin-left: 20px;
+}
+
+.black-box {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.white-box {
+  background-color: white;
+  padding: 60px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cancel-confirm-div {
+  justify-content: space-between;
+}
+
+.hidden {
+  display: none;
 }

@@ -83,7 +83,7 @@ app.get('/api/entries/:entryId', (req, res) => {
       });
     });
 });
-app.patch('/api/meals/:entryId', (req, res) => {
+app.patch('/api/entries/:entryId', (req, res) => {
   const { entryId } = req.params;
   const { title, photoUrl, notes } = req.body;
   if (!title || !photoUrl || !photoUrl || !notes) {
@@ -113,6 +113,23 @@ app.patch('/api/meals/:entryId', (req, res) => {
         error: 'an unexpected error occurred'
       });
     });
+});
+
+app.delete('/api/entries/:entryId', function (req, res) {
+  let { entryId } = req.params;
+  entryId = Number(entryId);
+
+  const text = `DELETE FROM "entries"
+              where "entryId"=$1
+              RETURNING *`;
+  const value = [entryId];
+  db.query(text, value, (err, res2) => {
+    if (err) {
+      return res.status(500).send({ error: 'database querying failed.' });
+    } else {
+      return res.sendStatus(204);
+    }
+  });
 });
 
 app.listen(process.env.PORT, () => {

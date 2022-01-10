@@ -46,7 +46,7 @@ export default class Home extends React.Component {
   render() {
     const { title, photoUrl, notes } = this.state;
     return (
-      <main>
+      <>
         <h2>{!title ? 'New Entry' : title}</h2>
         <form onSubmit={this.handleSubmit}>
         <div className='row'>
@@ -98,7 +98,7 @@ export default class Home extends React.Component {
           </div>
         </div>
         </form>
-      </main>
+      </>
     );
   }
 }

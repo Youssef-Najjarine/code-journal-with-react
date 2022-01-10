@@ -83,7 +83,7 @@ export default class EditEntry extends React.Component {
   render() {
     const { title, photoUrl, notes } = this.state;
     return (
-      <main>
+      <>
         <h2>{!title ? 'Edit Entry' : title}</h2>
         <form onSubmit={this.handleSubmit}>
           <div className='row'>
@@ -145,7 +145,7 @@ export default class EditEntry extends React.Component {
               <button onClick={this.handleEntryDelete} className='confirm-delete'>confirm</button></div>
           </div>
         </div>
-      </main>
+      </>
     );
   }
 }

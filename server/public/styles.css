@@ -11,6 +11,19 @@ li {
   margin: 20px 0;
 }
 
+.create-account h2 {
+  font-size: 40px;
+}
+
+.create-account h2,
+.create-account h6 {
+  margin: 20px 0;
+}
+
+.create-account h6 {
+  font-size: 20px;
+}
+
 .new-entry-input input,
 .new-entry-input label,
 .notes-div label,
@@ -91,4 +104,86 @@ li {
   background-color: red;
   padding: 10px 16px;
   border-radius: 5px;
+}
+
+.sign-up-sign-in button {
+  background: purple;
+  color: #fff;
+  position: relative;
+  font-size: 25px;
+  width: 39%;
+  height: 40px;
+  transition: 800ms ease all;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.create-account button {
+  background: purple;
+  color: #fff;
+  position: relative;
+  font-size: 25px;
+  width: 50%;
+  height: 40px;
+  transition: 800ms ease all;
+  border-radius: 5px;
+  margin: 0 0 20px;
+}
+
+.create-account a {
+  background: purple;
+  color: #fff;
+  position: relative;
+  font-size: 25px;
+  transition: 800ms ease all;
+  border-radius: 5px;
+  padding: 0.4% 20.56%;
+}
+
+.sign-up-sign-in a {
+  width: 39%;
+  background: purple;
+  color: #fff;
+  position: relative;
+  font-size: 25px;
+  transition: 800ms ease all;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 0.4% 7.36%;
+}
+
+.sign-up-sign-in button:hover,
+.sign-up-sign-in a:hover {
+  background: #fff;
+  color: purple;
+}
+
+.sign-up-sign-in button::before,
+.sign-up-sign-in button::after,
+.sign-up-sign-in a::before,
+.sign-up-sign-in a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: purple;
+  transition: 400ms ease all;
+}
+
+.sign-up-sign-in button::after,
+.sign-up-sign-in a::after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+
+.sign-up-sign-in button:hover::before,
+.sign-up-sign-in button:hover::after,
+.sign-up-sign-in a:hover::before,
+.sign-up-sign-in a:hover::after {
+  width: 100%;
+  transition: 800ms ease all;
 }

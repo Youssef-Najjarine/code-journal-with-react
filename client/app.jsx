@@ -4,7 +4,8 @@ import Header from './pages/header';
 import parseRoute from './lib/parse-route';
 import Entries from './pages/entries';
 import EditEntry from './pages/edit-entry';
-
+import SignUpSignIn from './pages/sign-up-sign-in';
+import SignUp from './pages/sign-up';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -47,6 +48,10 @@ export default class App extends React.Component {
       return <Entries token='token'/>;
     } else if (route.path === 'editEntry') {
       return <EditEntry token='token' entryId={entryId}/>;
+    } else if (route.path === 'signUp/In') {
+      return <SignUpSignIn/>;
+    } else if (route.path === 'signUp') {
+      return <SignUp/>;
     }
   }
 
@@ -55,7 +60,9 @@ export default class App extends React.Component {
       <>
         <Header logo='Blog Journal'/>
       <div className='container'>
-        { this.renderPage() }
+        <main>
+          { this.renderPage() }
+        </main>
       </div>
       </>
     );

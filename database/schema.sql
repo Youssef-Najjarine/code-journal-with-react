@@ -14,6 +14,8 @@ create schema "public";
 	"email" TEXT NOT NULL UNIQUE,
 	"hashedPassword" TEXT NOT NULL,
 	"createdAt" TIMESTAMP NOT NULL DEFAULT 'now()',
+  "birthday" TEXT NOT NULL,
+	"gender" TEXT NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE

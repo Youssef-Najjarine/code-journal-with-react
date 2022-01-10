@@ -19,6 +19,10 @@
   width: calc(100% / 3);
 }
 
+.column-quarter {
+  width: calc(100% / 4.1);
+}
+
 .header {
   background-color: purple;
   justify-content: space-evenly;
@@ -79,6 +83,52 @@
 
 .cancel-confirm-div {
   justify-content: space-between;
+}
+
+.sign-up-sign-in {
+  text-align: center;
+  padding: 10% 0;
+}
+
+.sign-up-div {
+  max-width: 40%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-up-div input {
+  height: 40px;
+  border-radius: 5px;
+  padding: 0;
+  margin: 5px;
+}
+
+.create-account {
+  text-align: center;
+}
+
+.sign-up-div input::placeholder,
+.create-account input::placeholder {
+  font-size: 20px;
+}
+
+.create-account input {
+  height: 40px;
+  border-radius: 5px;
+  padding: 20px 5px;
+  margin: 5px;
+}
+
+.create-account-email-password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 150px;
+  margin-bottom: 20px;
 }
 
 .hidden {

@@ -42,12 +42,12 @@ export default class Entries extends React.Component {
 
   render() {
     return (
-      <main>
+      <>
         <h2>Entries</h2>
-     <ul className='column-full'>
-            {this.handleEntries()}
-     </ul>
-      </main>
+        <ul className='column-full'>
+              {this.handleEntries()}
+        </ul>
+      </>
     );
   }
 }

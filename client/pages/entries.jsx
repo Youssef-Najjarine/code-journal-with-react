@@ -43,7 +43,12 @@ export default class Entries extends React.Component {
   render() {
     return (
       <>
+        <div className='row entries-new'>
         <h2>Entries</h2>
+        <div>
+          <a href='#home'>NEW</a>
+        </div>
+      </div>
         <ul className='column-full'>
               {this.handleEntries()}
         </ul>

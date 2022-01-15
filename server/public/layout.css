@@ -131,6 +131,16 @@
   margin-bottom: 20px;
 }
 
+.entries-new {
+  justify-content: space-between;
+  align-items: center;
+}
+
+#birthday {
+  width: 50%;
+  font-size: 30px;
+}
+
 .hidden {
   display: none;
 }

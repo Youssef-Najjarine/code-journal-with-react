@@ -152,6 +152,16 @@ li {
   padding: 0.4% 7.36%;
 }
 
+.entries-new a {
+  border-radius: 5px;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 8px 14px;
+  background-color: rebeccapurple;
+  color: white;
+  text-transform: uppercase;
+}
+
 .sign-up-sign-in button:hover,
 .sign-up-sign-in a:hover {
   background: #fff;
@@ -186,4 +196,14 @@ li {
 .sign-up-sign-in a:hover::after {
   width: 100%;
   transition: 800ms ease all;
+}
+
+.gender-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.genders {
+  align-items: center;
 }

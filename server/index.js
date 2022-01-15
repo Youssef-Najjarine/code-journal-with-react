@@ -1,7 +1,7 @@
 require('dotenv/config');
 const pg = require('pg');
 // const jwt = require('jsonwebtoken');
-// const argon2 = require('argon2');
+const argon2 = require('argon2');
 const express = require('express');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
@@ -21,6 +21,29 @@ app.use(jsonMiddleware);
 app.use(staticMiddleware);
 app.use(errorMiddleware);
 
+app.post('/api/users/sign-up', (req, res, next) => {
+  const { firstName, lastName, email, password, birthday, gender } = req.body;
+  if (!firstName || !lastName || !email || !password || !birthday || !gender) {
+    throw new ClientError(400, 'Please enter a valid firstName, lastName, email, password, birthday, and gender.');
+  }
+  argon2
+    .hash(password)
+    .then(hashedPassword => {
+      const sql = `
+        insert into "users" ("firstName", "lastName", "email", "hashedPassword", "birthday", "gender")
+        values ($1, $2, $3, $4, $5, $6)
+        returning "userId", "firstName", "lastName", "createdAt"
+      `;
+      const params = [firstName, lastName, email, hashedPassword, birthday, gender];
+      return db.query(sql, params);
+    })
+    .then(result => {
+      const [user] = result.rows;
+      res.status(201).json(user);
+    })
+    .catch(err => next(err));
+});
+// app.use(authorizationMiddleware);
 app.post('/api/users/entries', (req, res) => {
   const userId = 1;
   const { title, photoUrl, notes } = req.body;

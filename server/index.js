@@ -1,12 +1,12 @@
 require('dotenv/config');
 const pg = require('pg');
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const argon2 = require('argon2');
 const express = require('express');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
-// const authorizationMiddleware = require('./authorization-middleware');
+const authorizationMiddleware = require('./authorization-middleware');
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -43,9 +43,44 @@ app.post('/api/users/sign-up', (req, res, next) => {
     })
     .catch(err => next(err));
 });
-// app.use(authorizationMiddleware);
+
+app.post('/api/users/sign-in', (req, res, next) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    throw new ClientError(401, 'invalid login');
+  }
+  const sql = `
+    select "userId",
+           "hashedPassword",
+           "firstName",
+           "lastName"
+      from "users"
+     where "email" = $1
+  `;
+  const params = [email];
+  db.query(sql, params)
+    .then(result => {
+      const [user] = result.rows;
+      if (!user) {
+        throw new ClientError(401, 'invalid login');
+      }
+      const { userId, hashedPassword, firstName, lastName } = user;
+      return argon2
+        .verify(hashedPassword, password)
+        .then(isMatching => {
+          if (!isMatching) {
+            throw new ClientError(401, 'invalid login');
+          }
+          const payload = { userId, fullName: firstName + ' ' + lastName };
+          const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+          res.json({ token, user: payload });
+        });
+    })
+    .catch(err => next(err));
+});
+app.use(authorizationMiddleware);
 app.post('/api/users/entries', (req, res) => {
-  const userId = 1;
+  const userId = req.user.userId;
   const { title, photoUrl, notes } = req.body;
   if (!title || !photoUrl || !notes) {
     throw new ClientError(400, 'Please enter a valid title, photo Url, and notes.');
@@ -69,14 +104,17 @@ app.post('/api/users/entries', (req, res) => {
     });
 });
 app.get('/api/users/:userId/entries', (req, res) => {
-
+  const userId = req.user.userId;
   const sql = `
     select *
       from "entries"
+      where "userId" = $1
      order by "entryId"
-  `;
 
-  db.query(sql)
+  `;
+  const params = [userId];
+
+  db.query(sql, params)
     .then(result => {
       res.json(result.rows);
     })

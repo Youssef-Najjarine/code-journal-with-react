@@ -56,7 +56,7 @@ export default class Home extends React.Component {
 
           <div className='column-half'>
             <div className='new-entry-input'>
-              <label>Title</label>
+              <label>{!title ? 'Title' : title}</label>
               <input
                     required
                     type='text'

@@ -22,43 +22,43 @@ export default class App extends React.Component {
     window.addEventListener('hashchange', () => {
       this.setState({ route: parseRoute(window.location.hash) });
     });
-    // const userJSON = window.localStorage.getItem('currentUser');
-    // const user = userJSON ? JSON.parse(userJSON).name : null;
-    // const token = userJSON ? JSON.parse(userJSON).token : null;
-    // this.setState({ user: user, token: token });
+    const userJSON = window.localStorage.getItem('currentUser');
+    const user = userJSON ? JSON.parse(userJSON).name : null;
+    const token = userJSON ? JSON.parse(userJSON).token : null;
+    this.setState({ user: user, token: token });
   }
 
   handleSignIn(currentUser) {
-    // window.localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    // this.setState({ user: currentUser.name, token: currentUser.token });
+    window.localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    this.setState({ user: currentUser.name, token: currentUser.token });
   }
 
   handleSignOut(currentUser) {
-    // window.localStorage.removeItem(currentUser);
-    // this.setState({ user: null, token: null });
+    window.localStorage.removeItem(currentUser);
+    this.setState({ user: null, token: null });
   }
 
   renderPage() {
-    const { route } = this.state;
+    const { route, user, token } = this.state;
     const entryId = route.params.get('entryId');
-    // const { route, user, token } = this.state;
-    if (route.path === 'home' || route.path === '') {
-      return <Home token='token'/>;
+    if (route.path === 'signUp') {
+      return <SignUp />;
+    } else if (!user || route.path === 'signUp/In') {
+      return <SignUpSignIn handleSignIn={this.handleSignIn}/>;
+    } else if (route.path === 'home' || route.path === '') {
+      return <Home token={token}/>;
     } else if (route.path === 'entries') {
-      return <Entries token='token'/>;
+      return <Entries token={token}/>;
     } else if (route.path === 'editEntry') {
-      return <EditEntry token='token' entryId={entryId}/>;
-    } else if (route.path === 'signUp/In') {
-      return <SignUpSignIn/>;
-    } else if (route.path === 'signUp') {
-      return <SignUp/>;
+      return <EditEntry token={token} entryId={entryId}/>;
     }
   }
 
   render() {
+
     return (
       <>
-        <Header logo='Blog Journal'/>
+        <Header logo='Blog Journal' user={this.state.user} handleSignOut={this.handleSignOut}/>
       <div className='container'>
         <main>
           { this.renderPage() }

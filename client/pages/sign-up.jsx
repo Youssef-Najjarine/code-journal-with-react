@@ -53,7 +53,7 @@ export default class SignUp extends React.Component {
         .catch(error => {
           console.error('Error:', error);
         });
-      window.location.hash = '#entries';
+      window.location.hash = '#signUp/In';
     }
   }
 
